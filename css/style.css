@@ -513,3 +513,36 @@ table.conj { border-collapse: collapse; font: 14px var(--sans); margin: 10px 0; 
   .cl-vocab { columns: 1; }
   table.conj { font-size: 12px; display: block; overflow-x: auto; }
 }
+
+/* ---------- atlas media ---------- */
+.pp-photo { margin: -22px -22px 16px; position: relative; cursor: zoom-in; }
+.pp-photo img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter .5s; background: #ddd; }
+.pp-photo:hover img, .pp-photo.color img { filter: none; }
+.pp-photo figcaption { font: 10px/1.35 var(--sans); color: var(--mute); padding: 5px 22px 0; }
+.pp-photo figcaption a { color: inherit; }
+.pp-thumbs { display: flex; gap: 6px; margin: 0 0 14px; }
+.pp-thumbs button { padding: 0; border: 1px solid transparent; background: none; cursor: pointer; width: 64px; }
+.pp-thumbs button.on { border-color: var(--ink); }
+.pp-thumbs img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; filter: grayscale(1); }
+.pp-watch { margin-top: 16px; display: block; width: 100%; }
+.films { display: grid; gap: 26px; }
+.film { display: grid; grid-template-columns: 1.6fr 1fr; gap: 0; border: 1px solid var(--ink); background: #0b0b0b; }
+.film video { width: 100%; display: block; aspect-ratio: 16 / 9; background: #000; }
+.film-meta { background: var(--paper); padding: 16px 18px; overflow: auto; max-height: 100%; }
+.film-meta h4 { font: 400 22px/1.15 var(--display); margin: 0 0 10px; }
+.film-meta h4.ar { font-family: var(--ar); }
+.film-meta h4.jp { font-family: var(--jp); }
+.chapters { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 14px; }
+.chapters button { background: none; border: 0; padding: 4px 0; cursor: pointer; font: 13px var(--serif); color: var(--ink); text-align: left; display: flex; gap: 8px; width: 100%; }
+.chapters button:hover { text-decoration: underline; }
+.chapters span { font: 11px var(--sans); color: var(--mute); min-width: 30px; padding-top: 2px; }
+.credits-wrap { margin-top: 60px; border-top: 1px solid var(--ink); padding-top: 10px; }
+.credits-wrap summary { cursor: pointer; font: 400 15px var(--display); letter-spacing: .06em; }
+.credits { list-style: none; padding: 0; margin: 10px 0 0; columns: 2; column-gap: 28px; font: 11px/1.45 var(--sans); color: var(--ink-2); }
+.credits li { break-inside: avoid; padding: 3px 0; }
+.credits a { color: inherit; }
+@media (max-width: 860px) {
+  .film { grid-template-columns: 1fr; }
+  .pp-photo { margin: -22px -22px 14px; }
+  .credits { columns: 1; }
+}

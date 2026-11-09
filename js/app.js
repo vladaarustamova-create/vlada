@@ -381,7 +381,14 @@
   function showPlace(id) {
     const p = DATA.atlas.find((x) => x.id === id); if (!p) return;
     const cls = p.region === "ja" ? "jp" : p.region === "ar" ? "ar" : "";
-    $("#placePanel").innerHTML = `
+    const M = window.MEDIA || { photos: {}, films: {} };
+    const ph = M.photos[id] || [], film = M.films[p.region], at = film && film.chapters[id];
+    const gallery = ph.length ? `
+      <figure class="pp-photo"><img src="${ph[0].src}" alt="${esc(ph[0].title)}" loading="lazy">
+        <figcaption>${credit(ph[0])}</figcaption></figure>
+      ${ph.length > 1 ? `<div class="pp-thumbs">${ph.map((x, i) => `<button data-ph="${i}" class="${i ? "" : "on"}" aria-label="Photo ${i + 1}"><img src="${x.src}" alt="" loading="lazy"></button>`).join("")}</div>` : ""}` : "";
+    const watch = at != null ? `<button class="btn btn-ghost pp-watch" data-film="${p.region}" data-t="${at}">▶ WATCH THIS CHAPTER · ${fmtTime(at)}</button>` : "";
+    $("#placePanel").innerHTML = `${gallery}
       <p class="kicker"><i>${REGION_LABEL[p.region].toUpperCase()} — ${esc(p.era)}</i></p>
       <h3 class="headline sm">${esc(p.name)}</h3>
       <div class="local ${cls}" ${p.region === "ar" ? 'dir="rtl"' : ""}>${esc(p.local)} ${sayBtn(p.local, LANG_OF[p.region]).replace('class="say"', 'class="say" style="display:inline-block;vertical-align:middle"')}</div>
@@ -389,7 +396,18 @@
       <h4>CULTURE TODAY</h4><p>${esc(p.culture)}</p>
       <h4>WORDS FROM HERE</h4>
       <ul class="words">${p.words.map(([w, m]) => `<li><b class="${cls}">${esc(w)}</b>${esc(m)}</li>`).join("")}</ul>
-      ${p.bridge ? '<span class="bridge-note">↔ A bridge between languages — see El Puente</span>' : ""}`;
+      ${p.bridge ? '<span class="bridge-note">↔ A bridge between languages — see El Puente</span>' : ""}
+      ${watch}`;
+    const panel = $("#placePanel");
+    panel.querySelectorAll("[data-ph]").forEach((b) => b.addEventListener("click", () => {
+      const x = ph[+b.dataset.ph];
+      panel.querySelector(".pp-photo img").src = x.src;
+      panel.querySelector(".pp-photo img").alt = x.title;
+      panel.querySelector(".pp-photo figcaption").innerHTML = credit(x);
+      panel.querySelectorAll("[data-ph]").forEach((y) => y.classList.toggle("on", y === b));
+    }));
+    const img = panel.querySelector(".pp-photo");
+    if (img) img.addEventListener("click", (e) => { if (!e.target.closest("a")) img.classList.toggle("color"); });
     if (map) {
       if (active && markers[active]) markers[active].getElement()?.querySelector(".pin")?.classList.remove("on");
       markers[id].getElement()?.querySelector(".pin")?.classList.add("on");
@@ -448,6 +466,35 @@
       if (shown.length) map.fitBounds(shown, { padding: [40, 40], maxZoom: 6 });
     }
   });
+
+  /* ---------------- FILMS & photo credits ---------------- */
+  function fmtTime(t) { t = Math.round(t); return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}`; }
+  function credit(x) {
+    return `${esc(x.title)} — ${esc(x.artist)} · <a href="${esc(x.page)}" target="_blank" rel="noopener">${esc(x.license)}</a>`;
+  }
+  function playFilm(region, t) {
+    const v = document.querySelector(`.film video[data-film="${region}"]`); if (!v) return;
+    v.closest(".film").scrollIntoView({ behavior: "smooth", block: "center" });
+    const go = () => { v.currentTime = t; v.play().catch(() => {}); };
+    v.readyState >= 1 ? go() : (v.preload = "auto", v.addEventListener("loadedmetadata", go, { once: true }), v.load());
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-film][data-t]"); if (b) playFilm(b.dataset.film, +b.dataset.t);
+  });
+  if (window.MEDIA && $("#films")) {
+    const byId = Object.fromEntries(DATA.atlas.map((p) => [p.id, p]));
+    $("#films").innerHTML = Object.entries(MEDIA.films).map(([k, f]) => `
+      <article class="film">
+        <video data-film="${k}" src="${f.src}" poster="${f.poster}" controls preload="none" playsinline></video>
+        <div class="film-meta">
+          <p class="kicker"><i>FILM · ${fmtTime(f.duration)}</i></p>
+          <h4 class="${k === "ja" ? "jp" : k === "ar" ? "ar" : ""}">${esc(f.title)}</h4>
+          <ol class="chapters">${Object.entries(f.chapters).map(([id, t]) => `<li><button data-film="${k}" data-t="${t}"><span>${fmtTime(t)}</span>${esc(byId[id].name)}</button></li>`).join("")}</ol>
+        </div>
+      </article>`).join("");
+    $("#credits").innerHTML = Object.entries(MEDIA.photos).map(([id, list]) =>
+      list.map((x) => `<li><b>${esc(byId[id].name)}</b> ${credit(x)}</li>`).join("")).join("");
+  }
 
   $("#timelines").innerHTML = Object.entries(DATA.timelines).map(([k, t]) => `
     <div class="tl"><h4 class="${k === "ja" ? "jp" : k === "ar" ? "ar" : ""}">${t.title}</h4>
