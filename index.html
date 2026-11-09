@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lengua · Kotoba · Lugha</title>
+<meta name="description" content="Learn Spanish (DELE B2), Japanese (JLPT N5) and Arabic with mnemonics, Japanese study methods and an interactive atlas of culture and history.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Pinyon+Script&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,800;1,6..72,400&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@400;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ===== top bar ===== -->
+  <nav class="topbar" aria-label="Sections">
+    <a href="#method">method</a>
+    <a href="#espanol">español</a>
+    <a href="#nihongo">日本語</a>
+    <a href="#arabiya" class="ar">العربية</a>
+    <a href="#puente">el puente</a>
+    <a href="#studio">studio</a>
+    <a href="#atlas">atlas</a>
+  </nav>
+
+  <!-- ===== masthead (Newton layout) ===== -->
+  <header class="masthead">
+    <div class="mh-row">
+      <span class="mh-word">LENGUA</span>
+      <span class="tile tile-wide" aria-hidden="true"><span class="jp">言葉</span><span class="ar">لغة</span><span>palabra</span></span>
+    </div>
+    <div class="mh-row">
+      <span class="tile tile-sq" aria-hidden="true"><span class="ar big">ع</span></span>
+      <span class="mh-script">Kotoba</span>
+    </div>
+    <div class="mh-row">
+      <span class="mh-word">LUGHA</span>
+      <span class="mh-note">three words<br>for “language”<br>es · ja · ar</span>
+    </div>
+    <p class="intro">A personal study house for <b>Spanish (DELE B2)</b>, <b>Japanese (JLPT N5)</b> and <b>Arabic from zero</b>, built on mnemonics and Japanese learning methods — Kaizen, Shu-Ha-Ri, Ondoku — with an atlas that teaches the history and culture behind every word.</p>
+  </header>
+
+  <!-- ===== quote ===== -->
+  <section class="quote" aria-label="Quote">
+    <h2 class="display">
+      <span class="line"><span>TO</span><span>HAVE</span><span>ANOTHER</span></span>
+      <span class="line"><span>LANGUAGE</span><em class="script">is to possess</em><span>A</span></span>
+      <span class="line"><span>SECOND</span><span>SOUL.</span></span>
+    </h2>
+    <p class="attrib">— attributed to Charlemagne</p>
+    <div class="hero-tile" aria-hidden="true">
+      <div><span class="es">ojalá</span><small>Spanish</small></div>
+      <div><span class="jp">夢</span><small>yume · dream</small></div>
+      <div><span class="ar">إن شاء الله</span><small>in shāʼa llāh</small></div>
+    </div>
+  </section>
+
+  <!-- ===== METHOD (Big Think article layout) ===== -->
+  <section id="method" class="article">
+    <p class="kicker"><i>THE METHOD — DAY ONE</i></p>
+    <div class="art-head">
+      <div>
+        <h2 class="headline">How memory turns words into places</h2>
+        <p class="dek">Japanese study traditions and old mnemonic tricks, combined into one daily routine for three languages.</p>
+      </div>
+      <figure class="art-fig">
+        <div class="tile tile-art" aria-hidden="true"><span class="jp">改善</span></div>
+        <figcaption>Kaizen — small change, every day</figcaption>
+      </figure>
+    </div>
+    <div class="takeaways">
+      <h3>KEY TAKEAWAYS</h3>
+      <p><span class="dot">●</span>Learn little but every day: a short daily habit beats long weekend sessions. <span class="dot">●</span>Turn every new word into a picture or a story — the stranger the image, the longer it lasts. <span class="dot">●</span>Review on a schedule, read aloud, write by hand, and reflect for one minute after each session.</p>
+    </div>
+    <p class="dropcap">Mnemonics work because the brain remembers images and places far better than abstract sounds. When <i>き</i> becomes a key, when Arabic <i>ثلاثة</i> (three) becomes three dots on a letter, when <i>alcalde</i> reveals an old Arabic judge, the word stops being noise and becomes a story. Japanese education adds discipline to that imagination: <b>Kaizen</b> keeps the habit small enough to never skip, <b>Shu-Ha-Ri</b> tells you when to copy and when to create, and <b>Ondoku</b> — reading aloud — makes sure every word passes through the mouth and the ear.</p>
+
+    <div class="methods" id="methods"></div>
+
+    <!-- Today desk (Substack-box style) -->
+    <div class="desk" id="today">
+      <div class="desk-col">
+        <h3>Today’s Kaizen</h3>
+        <p>Choose a small daily goal. Mark the day when it’s done — don’t break the chain.</p>
+        <div class="goal">
+          <label for="goalMin">Daily minutes</label>
+          <select id="goalMin"><option>5</option><option>10</option><option selected>15</option><option>20</option><option>30</option><option>45</option></select>
+        </div>
+        <button class="btn" id="markDay">MARK TODAY DONE</button>
+        <div class="streak"><span id="streakNum">0</span><small>day streak</small></div>
+        <div class="chain" id="chain" aria-label="Last 28 days"></div>
+      </div>
+      <div class="desk-col">
+        <h3>Hansei <span class="jp">反省</span></h3>
+        <p>One honest line: what was hard today, what will you change tomorrow?</p>
+        <textarea id="hanseiText" rows="3" placeholder="Today I mixed up る and ろ. Tomorrow: write each 10 times."></textarea>
+        <button class="btn btn-ghost" id="hanseiSave">SAVE REFLECTION</button>
+        <ul class="journal" id="journal"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ESPAÑOL ===== -->
+  <section id="espanol" class="lang">
+    <h2 class="sec-title">ESPAÑOL <span class="sub">— DELE B2</span></h2>
+
+    <div class="cols-2">
+      <div class="figblock">
+        <div class="tile tile-tall" aria-hidden="true"><span class="es-big">ñ</span></div>
+        <p class="small">The DELE B2 is issued by the Instituto Cervantes and designed with the University of Salamanca. Pass mark: 60 points out of 100, with at least 30 in each of the two groups (reading + writing, listening + speaking).</p>
+      </div>
+      <div>
+        <table class="exam">
+          <thead><tr><th>Paper</th><th>Time</th><th>Tasks</th></tr></thead>
+          <tbody id="deleTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3 class="sub-title">LESSONS · mnemonic acronyms</h3>
+    <div class="lessons" id="esLessons"></div>
+
+    <div class="cols-3">
+      <div><h3 class="sub-title">B2 VOCABULARY</h3><ul class="wordlist" id="esVocab"></ul></div>
+      <div><h3 class="sub-title">MODISMOS</h3><ul class="wordlist" id="esIdioms"></ul></div>
+      <div><h3 class="sub-title">FALSOS AMIGOS</h3><ul class="wordlist" id="esFalse"></ul></div>
+    </div>
+    <p class="cta-row"><a class="ulink" href="#studio" data-deck="esVocab">Practise B2 vocabulary in the Studio →</a> <a class="ulink" href="#studio" data-deck="esIdioms">Practise idioms →</a></p>
+  </section>
+
+  <!-- ===== 日本語 ===== -->
+  <section id="nihongo" class="lang">
+    <h2 class="sec-title">日本語 <span class="sub">— NIHONGO · JLPT N5</span></h2>
+
+    <h2 class="display small-display">
+      <span class="line"><span>EVERY</span><span>KANA</span><span>IS</span></span>
+      <span class="line"><span>A</span><em class="script">little</em><span>PICTURE.</span></span>
+    </h2>
+
+    <div class="kana-wrap">
+      <div>
+        <div class="seg" role="tablist">
+          <button class="seg-btn on" data-kana="hira" role="tab" aria-selected="true">Hiragana ひらがな</button>
+          <button class="seg-btn" data-kana="kata" role="tab" aria-selected="false">Katakana カタカナ</button>
+        </div>
+        <div class="kana-grid" id="kanaGrid"></div>
+      </div>
+      <aside class="inspector" id="kanaInspector" aria-live="polite">
+        <div class="ins-glyph jp">あ</div>
+        <div class="ins-read">a</div>
+        <p class="ins-mn">Tap a character to see its mnemonic and hear it.</p>
+      </aside>
+    </div>
+
+    <h3 class="sub-title">KANJI · N5 with stories</h3>
+    <p class="small">Each kanji is broken into pictures. Say the story aloud (Ondoku), then write it three times (Kakitori). Kun = Japanese reading, On = Chinese-derived reading.</p>
+    <div class="kanji-grid" id="kanjiGrid"></div>
+
+    <div class="cols-2">
+      <div><h3 class="sub-title">GRAMMAR · N5 core</h3><ol class="grammar" id="jpGrammar"></ol></div>
+      <div><h3 class="sub-title">SURVIVAL PHRASES</h3><ul class="wordlist" id="jpPhrases"></ul></div>
+    </div>
+    <p class="cta-row"><a class="ulink" href="#studio" data-deck="hiragana">Drill hiragana →</a> <a class="ulink" href="#studio" data-deck="kanji">Drill kanji →</a></p>
+  </section>
+
+  <!-- ===== العربية ===== -->
+  <section id="arabiya" class="lang">
+    <h2 class="sec-title">العربية <span class="sub">— AL-ʿARABIYYA · from zero</span></h2>
+
+    <div class="cols-2">
+      <div class="figblock">
+        <div class="tile tile-tall" aria-hidden="true"><span class="ar ar-huge">ض</span></div>
+        <p class="small">Arabic is written right-to-left, has 28 letters, and most letters change shape depending on whether they are at the start, middle or end of a word. Short vowels are usually not written. Six letters (ا د ذ ر ز و) never join the letter after them.</p>
+      </div>
+      <div class="note-card">
+        <h4>Good news for a Spanish speaker</h4>
+        <p>Castilian Spanish already contains several “difficult” Arabic sounds:</p>
+        <ul>
+          <li><span class="ar">خ</span> kh = the <b>j</b> of <i>jamón</i></li>
+          <li><span class="ar">ث</span> th = the <b>z</b> of <i>zapato</i></li>
+          <li><span class="ar">ذ</span> dh = the soft <b>d</b> of <i>nada</i></li>
+          <li><span class="ar">غ</span> gh = the soft <b>g</b> of <i>agua</i></li>
+          <li><span class="ar">ر</span> r = the tapped <b>r</b> of <i>pero</i></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub-title">THE ALPHABET · tap a letter</h3>
+    <div class="kana-wrap ar-wrap">
+      <div class="ar-grid" id="arGrid" dir="rtl"></div>
+      <aside class="inspector" id="arInspector" aria-live="polite">
+        <div class="ins-glyph ar">ب</div>
+        <div class="ins-read">bāʼ · b</div>
+        <div class="ins-forms ar" dir="rtl"></div>
+        <p class="ins-mn">Tap a letter to see its four forms, a mnemonic and its Spanish sound.</p>
+      </aside>
+    </div>
+
+    <div class="cols-2">
+      <div><h3 class="sub-title">FIRST PHRASES</h3><ul class="wordlist" id="arPhrases"></ul></div>
+      <div><h3 class="sub-title">NUMBERS ٠–١٠</h3><ul class="numbers" id="arNumbers"></ul></div>
+    </div>
+    <p class="cta-row"><a class="ulink" href="#studio" data-deck="arabic">Drill the alphabet →</a> <a class="ulink" href="#studio" data-deck="arPhrases">Drill phrases →</a></p>
+  </section>
+
+  <!-- ===== EL PUENTE ===== -->
+  <section id="puente" class="lang">
+    <h2 class="sec-title">EL PUENTE <span class="sub">— الجسر · Spanish ↔ Arabic</span></h2>
+
+    <h2 class="display">
+      <span class="line"><span>SPANISH</span><span>CARRIES</span></span>
+      <span class="line"><span>FOUR</span><em class="script">thousand</em><span>ARABIC</span></span>
+      <span class="line"><span>WORDS</span><span>INSIDE</span><span>IT.</span></span>
+    </h2>
+
+    <div class="cols-2">
+      <p class="dropcap">From 711 to 1492 Arabic was spoken across much of the Iberian Peninsula. Spanish kept thousands of its words — for food, irrigation, building, science and government. Many still carry the Arabic article <b>al-</b> glued to the front: <i>al-makhzan</i> became <i>almacén</i>. And here is the secret: these Spanish words teach you a real rule of Arabic grammar — the <b>sun and moon letters</b>.</p>
+      <div class="note-card">
+        <h4>Sun letters ☀ &amp; moon letters ☾</h4>
+        <p>Before 14 “sun letters” the <b>l</b> of <span class="ar">ال</span> melts into the next sound: <i>al-sukkar</i> is said <b>as-sukkar</b> → Spanish <b>azúcar</b>, no l! Before the other 14 “moon letters” the l stays: <i>al-qāḍī</i> → <b>alcalde</b>.</p>
+        <p class="sun-row ar" id="sunRow" dir="rtl"></p>
+        <p class="small">So when a Spanish word starts with <i>a-</i> + doubled-looking consonant (azúcar, arroz, aceite, aduana), think sun letter. When it starts with <i>al-</i> (almohada, algodón), think moon letter.</p>
+      </div>
+    </div>
+
+    <div class="filter" id="puenteFilter">
+      <button class="chip on" data-f="all">All</button>
+      <button class="chip" data-f="sun">☀ Sun letter</button>
+      <button class="chip" data-f="moon">☾ Moon letter</button>
+      <button class="chip" data-f="none">No article</button>
+    </div>
+    <div class="puente-grid" id="puenteGrid"></div>
+
+    <h3 class="sub-title">PLACE NAMES ON THE MAP OF SPAIN</h3>
+    <ul class="places" id="placeList"></ul>
+
+    <div class="game" id="puenteGame">
+      <h3 class="sub-title">GAME · guess the Arabic origin</h3>
+      <div class="game-q"><span id="pgWord">azúcar</span></div>
+      <div class="game-opts" id="pgOpts"></div>
+      <p class="game-fb" id="pgFb" aria-live="polite"></p>
+      <button class="btn btn-ghost" id="pgNext">NEXT WORD</button>
+    </div>
+  </section>
+
+  <!-- ===== STUDIO ===== -->
+  <section id="studio" class="lang">
+    <h2 class="sec-title">STUDIO <span class="sub">— spaced repetition · 間隔反復</span></h2>
+    <div class="studio-top">
+      <label for="deckSel">Deck</label>
+      <select id="deckSel"></select>
+      <div class="seg">
+        <button class="seg-btn on" data-mode="cards">Cards</button>
+        <button class="seg-btn" data-mode="quiz">Quiz</button>
+      </div>
+      <span class="boxes" id="boxStats"></span>
+    </div>
+
+    <div class="studio" id="cardMode">
+      <div class="card" id="card" tabindex="0" aria-live="polite">
+        <div class="card-front" id="cardFront"></div>
+        <div class="card-back" id="cardBack" hidden></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-ghost" id="flipBtn">SHOW ANSWER (space)</button>
+        <button class="btn btn-ghost" id="sayBtn">▶ SAY IT</button>
+      </div>
+      <div class="grade" id="gradeRow" hidden>
+        <button class="btn g0" data-g="0">AGAIN<small>box 1</small></button>
+        <button class="btn g1" data-g="1">HARD<small>stay</small></button>
+        <button class="btn g2" data-g="2">GOOD<small>+1 box</small></button>
+        <button class="btn g3" data-g="3">EASY<small>+2 boxes</small></button>
+      </div>
+      <p class="small center" id="cardInfo"></p>
+    </div>
+
+    <div class="studio" id="quizMode" hidden>
+      <div class="game-q" id="qzPrompt"></div>
+      <div class="game-opts" id="qzOpts"></div>
+      <p class="game-fb" id="qzFb" aria-live="polite"></p>
+      <p class="small center">Score: <b id="qzScore">0 / 0</b> <button class="ulink linkbtn" id="qzNext">next question →</button></p>
+    </div>
+  </section>
+
+  <!-- ===== ATLAS ===== -->
+  <section id="atlas" class="lang">
+    <h2 class="sec-title">ATLAS <span class="sub">— culture &amp; history from scratch</span></h2>
+    <h2 class="display small-display">
+      <span class="line"><span>A</span><span>MAP</span><span>CAN</span><span>SERVE</span><span>AS</span></span>
+      <span class="line"><span>A</span><em class="script">bridge</em><span>BETWEEN</span><span>WORLDS.</span></span>
+    </h2>
+    <div class="filter" id="atlasFilter">
+      <button class="chip on" data-r="all">All</button>
+      <button class="chip" data-r="es">Español</button>
+      <button class="chip" data-r="ja">日本</button>
+      <button class="chip" data-r="ar">العربية</button>
+      <button class="chip" data-r="bridge">↔ Bridges</button>
+      <button class="chip" id="routeBtn">Draw the route Damascus → Córdoba</button>
+    </div>
+    <div class="atlas">
+      <div id="map" class="map" role="application" aria-label="Interactive map"></div>
+      <aside class="place-panel" id="placePanel" aria-live="polite">
+        <p class="kicker"><i>CHOOSE A CITY</i></p>
+        <h3 class="headline sm">Click a marker</h3>
+        <p class="small">Each place tells its history, its culture today and the words it gave the language. Places marked ↔ connect Spanish and Arabic — or Spain and Japan.</p>
+      </aside>
+    </div>
+    <ol class="place-index" id="placeIndex"></ol>
+
+    <h3 class="sub-title">HISTORY FROM SCRATCH</h3>
+    <div class="timelines" id="timelines"></div>
+  </section>
+
+  <!-- ===== PANTHEON (Newton "collaborations" list) ===== -->
+  <section class="pantheon" aria-label="People to know">
+    <h3 class="sub-title">PEOPLE TO KNOW</h3>
+    <ul id="pantheon"></ul>
+    <p class="small center" id="pantheonNote">Tap a name.</p>
+  </section>
+
+  <!-- ===== PLAN (Newton "exhibitions" cards) ===== -->
+  <section class="plan" aria-label="Study plan">
+    <h3 class="sub-title">THE 12-WEEK PLAN · SHU → HA → RI</h3>
+    <div class="plan-row" id="plan"></div>
+  </section>
+
+  <footer class="foot">
+    <span>LENGUA · 言葉 · لغة</span>
+    <span>Progress is saved in this browser only.</span>
+    <button class="ulink linkbtn" id="resetAll">reset progress</button>
+  </footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
