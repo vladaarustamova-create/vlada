@@ -24,4 +24,9 @@ All explanations and exercises are written for this site; none of the books' tex
 - **Studio**: spaced-repetition flashcards (Leitner boxes) and quizzes for 10 decks, with pronunciation from the browser's built-in voices.
 - **Atlas**: an interactive map with 29 places in Spain, Latin America, Japan and the Arab world. Each place has its history, its culture today and words that come from it. Also includes the Damascus → Córdoba route and timelines that start from the earliest history.
 
+## Photos & films
+- `media/photos/` has 81 photographs of the 29 Atlas places, from Wikimedia Commons under free licences (public domain or Creative Commons). Every photo is credited in the Atlas panel and in the **Photo credits** list at the bottom of the page.
+- `media/films/` has three short black-and-white documentaries made from those photos: Spain & the Spanish-speaking world (2:09), Japan (1:29) and the Arab world (1:39). Each place is one chapter, and **Watch this chapter** in the Atlas jumps straight to it.
+- `js/media.js` lists the photos, their credits and the film chapters.
+
 Progress is saved in your browser (localStorage). All content is in `js/data.js`.
