@@ -92,9 +92,6 @@
   /* ---------------- SPANISH ---------------- */
   $("#deleTable").innerHTML = DATA.dele.map(([p, t, n, d]) =>
     `<tr><td>${p}<small>${d}</small></td><td>${t}</td><td>${n}</td></tr>`).join("");
-  $("#esLessons").innerHTML = DATA.esLessons.map((l, i) => `
-    <details class="lesson"${i === 0 ? " open" : ""}><summary><span class="tag">${l.tag}</span><span class="t">${l.title}</span><span class="pm">+</span></summary>
-    <div class="body">${l.body}</div></details>`).join("");
   $("#esVocab").innerHTML = DATA.esVocab.map(([w, m, mn]) =>
     `<li><span class="w">${w}</span>${sayBtn(w, "es")}<span class="m">${m}</span><span class="mn">${mn}</span></li>`).join("");
   $("#esIdioms").innerHTML = DATA.esIdioms.map(([w, m, lit]) =>
@@ -246,6 +243,10 @@
     arPhrases: { label: "العربية · Phrases", lang: "ar", long: true, cards: DATA.arPhrases.map(([a, t, m]) => ({ f: a, a: m, b: t, say: a })) },
     puente: { label: "El Puente · Spanish → Arabic", lang: "es", long: true, cards: DATA.puente.map(([es, ar, t, m]) => ({ f: es, a: `${ar}  ·  ${t}`, b: m, say: es, sayB: ar })) }
   };
+  // vocabulary from the Minna no Nihongo and Arabic courses
+  const courseVocab = (C) => C.groups.flatMap((g) => g.lessons.flatMap((l) => (l.v || []).map(([w, r, m]) => ({ f: w, a: m, b: `${r} · ${l.ref}`, say: w }))));
+  if (window.COURSE_JA) DECKS.jaCourse = { label: "日本語 · みんなの日本語 vocabulary", lang: "ja", long: true, cards: courseVocab(window.COURSE_JA) };
+  if (window.COURSE_AR) DECKS.arCourse = { label: "العربية · course vocabulary", lang: "ar", long: true, cards: courseVocab(window.COURSE_AR) };
   const deckSel = $("#deckSel");
   deckSel.innerHTML = Object.entries(DECKS).map(([k, d]) => `<option value="${k}">${d.label}</option>`).join("");
   deckSel.value = store.get("deck", "hiragana");
@@ -470,9 +471,21 @@
 
   /* ---------------- PLAN ---------------- */
   const PHASE = { Shu: "守", Ha: "破", Ri: "離" };
+  // 12 weeks: spread the three courses evenly (≈2 Spanish units, 2 Minna lessons, 1–2 Arabic units a week)
+  const lessonsOf = (C) => (C ? C.groups.flatMap((g) => g.lessons) : []);
+  const slice = (arr, w) => arr.slice(Math.round((arr.length * w) / 12), Math.round((arr.length * (w + 1)) / 12));
+  const PLAN = Array.from({ length: 12 }, (_, w) => {
+    const es = slice(lessonsOf(window.COURSE_ES), w), ja = slice(lessonsOf(window.COURSE_JA), w), ar = slice(lessonsOf(window.COURSE_AR), w);
+    const t = [
+      es.length && `ES: ${es.map((l) => l.title).join(" · ")}`,
+      ja.length && `JA: ${ja.map((l) => l.ref.replace("みんなの日本語 ", "")).join(", ")}`,
+      ar.length && `AR: ${ar.map((l) => l.title).join(" · ")}`
+    ].filter(Boolean).join(" — ");
+    return [`Week ${w + 1}`, t, w < 4 ? "Shu" : w < 8 ? "Ha" : "Ri"];
+  });
   function renderPlan() {
     const done = store.get("plan", {});
-    $("#plan").innerHTML = DATA.plan.map(([w, t, ph], i) => `
+    $("#plan").innerHTML = PLAN.map(([w, t, ph], i) => `
       <div class="wk ${done[i] ? "done" : ""}"><div class="tile">${PHASE[ph]}</div>
       <h5>${w}</h5><p>${t}</p>
       <div class="wk-foot"><span>${ph} · ${PHASE[ph]}</span>
@@ -490,5 +503,8 @@
     try { Object.keys(localStorage).filter((k) => k.startsWith(PREFIX)).forEach((k) => localStorage.removeItem(k)); } catch (e) {}
     srs = {}; newSeen = 0;
     renderKaizen(); renderJournal(); renderPlan(); setMode(studioMode);
+    if (window.LKL.refreshCourses) window.LKL.refreshCourses();
   });
+
+  window.LKL = { speak, store, esc, renderKaizen };
 })();

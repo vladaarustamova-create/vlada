@@ -103,7 +103,7 @@
 
   <!-- ===== ESPAÑOL ===== -->
   <section id="espanol" class="lang">
-    <h2 class="sec-title">ESPAÑOL <span class="sub">— DELE B2</span></h2>
+    <h2 class="sec-title">ESPAÑOL <span class="sub">— A1 → B2 · DELE</span></h2>
 
     <div class="cols-2">
       <div class="figblock">
@@ -118,8 +118,7 @@
       </div>
     </div>
 
-    <h3 class="sub-title">LESSONS · mnemonic acronyms</h3>
-    <div class="lessons" id="esLessons"></div>
+    <div class="course" data-course="es"></div>
 
     <div class="cols-3">
       <div><h3 class="sub-title">B2 VOCABULARY</h3><ul class="wordlist" id="esVocab"></ul></div>
@@ -153,6 +152,8 @@
       </aside>
     </div>
 
+    <div class="course" data-course="ja"></div>
+
     <h3 class="sub-title">KANJI · N5 with stories</h3>
     <p class="small">Each kanji is broken into pictures. Say the story aloud (Ondoku), then write it three times (Kakitori). Kun = Japanese reading, On = Chinese-derived reading.</p>
     <div class="kanji-grid" id="kanjiGrid"></div>
@@ -161,12 +162,12 @@
       <div><h3 class="sub-title">GRAMMAR · N5 core</h3><ol class="grammar" id="jpGrammar"></ol></div>
       <div><h3 class="sub-title">SURVIVAL PHRASES</h3><ul class="wordlist" id="jpPhrases"></ul></div>
     </div>
-    <p class="cta-row"><a class="ulink" href="#studio" data-deck="hiragana">Drill hiragana →</a> <a class="ulink" href="#studio" data-deck="kanji">Drill kanji →</a></p>
+    <p class="cta-row"><a class="ulink" href="#studio" data-deck="jaCourse">Drill Minna no Nihongo vocabulary →</a> <a class="ulink" href="#studio" data-deck="hiragana">Drill hiragana →</a> <a class="ulink" href="#studio" data-deck="kanji">Drill kanji →</a></p>
   </section>
 
   <!-- ===== العربية ===== -->
   <section id="arabiya" class="lang">
-    <h2 class="sec-title">العربية <span class="sub">— AL-ʿARABIYYA · from zero</span></h2>
+    <h2 class="sec-title">العربية <span class="sub">— AL-ʿARABIYYA · A0 → A2</span></h2>
 
     <div class="cols-2">
       <div class="figblock">
@@ -197,11 +198,13 @@
       </aside>
     </div>
 
+    <div class="course" data-course="ar"></div>
+
     <div class="cols-2">
       <div><h3 class="sub-title">FIRST PHRASES</h3><ul class="wordlist" id="arPhrases"></ul></div>
       <div><h3 class="sub-title">NUMBERS ٠–١٠</h3><ul class="numbers" id="arNumbers"></ul></div>
     </div>
-    <p class="cta-row"><a class="ulink" href="#studio" data-deck="arabic">Drill the alphabet →</a> <a class="ulink" href="#studio" data-deck="arPhrases">Drill phrases →</a></p>
+    <p class="cta-row"><a class="ulink" href="#studio" data-deck="arCourse">Drill course vocabulary →</a> <a class="ulink" href="#studio" data-deck="arabic">Drill the alphabet →</a> <a class="ulink" href="#studio" data-deck="arPhrases">Drill phrases →</a></p>
   </section>
 
   <!-- ===== EL PUENTE ===== -->
@@ -321,7 +324,7 @@
 
   <!-- ===== PLAN (Newton "exhibitions" cards) ===== -->
   <section class="plan" aria-label="Study plan">
-    <h3 class="sub-title">THE 12-WEEK PLAN · SHU → HA → RI</h3>
+    <h3 class="sub-title">THE 12-WEEK PLAN · SHU → HA → RI · all three courses</h3>
     <div class="plan-row" id="plan"></div>
   </section>
 
@@ -334,6 +337,10 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/data.js"></script>
+<script src="js/course-es.js"></script>
+<script src="js/course-ja.js"></script>
+<script src="js/course-ar.js"></script>
 <script src="js/app.js"></script>
+<script src="js/course.js"></script>
 </body>
 </html>

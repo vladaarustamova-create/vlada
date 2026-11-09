@@ -587,21 +587,3 @@ DATA.pantheon = [
   ["Umm Kulthum","ar","“The Star of the East”: Egyptian singer whose concerts lasted hours."],
   ["Naguib Mahfouz","ar","Cairo novelist, Nobel Prize 1988."]
 ];
-
-/* --------------------------------------------------------------------------
-   12-WEEK PLAN (Kaizen pacing: ~30 min/day split across the three)
-   -------------------------------------------------------------------------- */
-DATA.plan = [
-  ["Week 1","Hiragana あ–そ · Arabic letters ا–خ · Spanish: ser/estar","Shu"],
-  ["Week 2","Hiragana た–ほ · Arabic letters د–ش · Subjunctive W.E.I.R.D.O.","Shu"],
-  ["Week 3","Hiragana ま–ん · Arabic letters ص–ي · DELE reading task 1","Shu"],
-  ["Week 4","Katakana · Sun & moon letters via El Puente · E.S.C.A.P.A.","Shu"],
-  ["Week 5","Kanji 1–20 · Arabic phrases · Por/para","Ha"],
-  ["Week 6","Kanji 21–40 · Arabic numbers · Idioms","Ha"],
-  ["Week 7","N5 grammar 1–6 · Read words with short vowels · Si-clauses","Ha"],
-  ["Week 8","Kanji 41–60 · El Puente words · Writing task: formal email","Ha"],
-  ["Week 9","N5 grammar 7–12 · Write your name in Arabic · Listening mock","Ri"],
-  ["Week 10","Kanji 61–73 · Atlas: al-Andalus route · Oral task 1 shadowing","Ri"],
-  ["Week 11","N5 mock test · Arabic dialogues · Full DELE reading mock","Ri"],
-  ["Week 12","Review all boxes · Hansei: what next? · Full DELE mock","Ri"]
-];

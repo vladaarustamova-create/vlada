@@ -1,8 +1,19 @@
 # Lengua · 言葉 · لغة
 
-A personal study website for **Spanish (DELE B2)**, **Japanese (JLPT N5)** and **Arabic from zero**, in a black-and-white magazine style.
+A personal study website for **Spanish A1 → B2 (DELE)**, **Japanese N5 (Minna no Nihongo 1–25)** and **Arabic A0 → A2**, in a black-and-white magazine style.
 
 Open `index.html` in a browser, or publish the repository with GitHub Pages (Settings → Pages → deploy from branch).
+
+## The three courses
+Each course has lessons with explanations, example sentences you can listen to, a vocabulary list and exercises that are checked automatically. Your progress is saved, and a lesson counts as passed at 80%.
+
+| Course | Lessons | Structure |
+|---|---|---|
+| Español A1 → B2 (`js/course-es.js`) | 24 units in 4 levels | Grammar-review order in the style of *The Ultimate Spanish Review and Practice*, graded by CEFR level (the Instituto Cervantes Plan Curricular that the DELE uses) |
+| みんなの日本語 N5 (`js/course-ja.js`) | 25 lessons | One unit per *Minna no Nihongo Shokyū I* lesson (第1課–第25課), to use alongside the book. Answers can be typed in kana or rōmaji |
+| العربية A0 → A2 (`js/course-ar.js`) | 18 units in 3 levels | Modern Standard Arabic in the classic grammar order of Janusz Danecki's *Gramatyka języka arabskiego* and similar university courses. Answers can be typed in Arabic script or transliteration |
+
+All explanations and exercises are written for this site; none of the books' text is copied. The 12-week plan spreads the three courses across Shu → Ha → Ri.
 
 ## What's inside
 - **Method**: Japanese learning methods (Kaizen, Shu-Ha-Ri, Ondoku, Shadowing, Kakitori, Hansei) plus mnemonic techniques. Includes a daily streak tracker and a Hansei reflection journal.
